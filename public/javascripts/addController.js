@@ -1,9 +1,9 @@
 //addController.js
 // Angular controller and module for adding users 
 
-var addController = angular.module("addController",["geolocation"]);
+var addController = angular.module("addController",["geolocation", "gservice"]);
 
-addController.controller("addController", function($scope, $http,geolocation){
+addController.controller("addController", function($scope, $http,geolocation, gservice){
 
 	// Initialize Variables
 	// ---------------------------
@@ -45,6 +45,9 @@ addController.controller("addController", function($scope, $http,geolocation){
 				$scope.formData.gender = "";
 				$scope.formData.age = "";
 				$scope.formData.favlang = "";
+
+				// refresh the map with dat new data
+				gservice.refresh($scope.formData.latitude,$scope.formData.longitude);
 			})
 			.error(function(data){
 				console.log("Error: "+ data);

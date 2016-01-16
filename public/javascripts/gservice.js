@@ -1,6 +1,6 @@
 // gservice factory for faciliating google maps
 angular.module('gservice', [])
-	.factory('gservice', function($http){
+	.factory('gservice', function($rootScope,$http){
 
 		//Initlalize variables
 		//--------------------
@@ -13,6 +13,10 @@ angular.module('gservice', [])
 		// Selected location (initialzed to center of 'MERICA! )
 		var selectedLat = 39.50;
 		var selectedLong = -98.35;
+
+		// Handle click to set locattion
+		googleMapService.clicklong = 0;
+		googleMapService.clicklat = 0;
 
 		// Protocols
 		//---------------
@@ -41,7 +45,7 @@ angular.module('gservice', [])
 			}).error(function(){});
 		};
 
-		// Super secret private inner functions
+		// Super secret private inner functions to chain after refresh
 		//-------------------------------------
 		// Convert Json of users to map points
 
@@ -52,7 +56,7 @@ angular.module('gservice', [])
 
 			// Loop through all of the Json entries
 			for(var i = 0; i < response.length; i++){
-				var users = response[i];
+				var user = response[i];
 				
 				// Create popup windows for each record
 				var contentString = 
@@ -82,7 +86,7 @@ angular.module('gservice', [])
 		};
 
 		//Initialize the map
-		var intialize = function(latitude,longitude){
+		var initialize = function(latitude,longitude){
 
 			// Uses the selected lat,long as starting point
 			var myLatLng = {lat: selectedLat, lng: selectedLong};
@@ -129,6 +133,33 @@ angular.module('gservice', [])
 				icon: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
 			});
 			lastMarker = marker;
+
+			map.panTo(new google.maps.LatLng(latitude,longitude));
+
+			// Click to move red marker
+			google.maps.event.addListener(map, "click", function(e){
+				var marker = new google.maps.Marker({
+					position: e.latLng,
+					animation: google.maps.Animation.bounce,
+					map: map,
+					icon: "http://maps.google.com/mapfiles/ms/icons/red-dot.png"
+				});
+				// When a new spot is selected, delete the old red bouncing marker
+				if(lastMarker){
+					lastMarker.setMap(null);
+				}
+
+				// Create a new red bouncing marker and move it
+				lastMarker = marker;
+				map.panTo(marker.position);
+
+				// Update scope broadcast variable to set notificatoin of click
+				googleMapService.clicklat = marker.getPosition().lat();
+				googleMapService.clicklong = marker.getPositoin().lng();
+				$rootScope.$broadcast("clicked");
+
+				
+			});
 		};
 
 		// refresh maps upon window open
