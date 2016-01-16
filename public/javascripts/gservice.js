@@ -155,10 +155,10 @@ angular.module('gservice', [])
 
 				// Update scope broadcast variable to set notificatoin of click
 				googleMapService.clicklat = marker.getPosition().lat();
-				googleMapService.clicklong = marker.getPositoin().lng();
+				googleMapService.clicklong = marker.getPosition().lng();
 				$rootScope.$broadcast("clicked");
 
-				
+
 			});
 		};
 

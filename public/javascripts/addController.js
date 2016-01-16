@@ -3,7 +3,7 @@
 
 var addController = angular.module("addController",["geolocation", "gservice"]);
 
-addController.controller("addController", function($scope, $http,geolocation, gservice){
+addController.controller("addController", function($scope, $http,$rootScope, geolocation, gservice){
 
 	// Initialize Variables
 	// ---------------------------
@@ -20,8 +20,19 @@ addController.controller("addController", function($scope, $http,geolocation, gs
 
 	// Protocols
 	//-----------------------------
-	//Create a new user based on the form fields
+	//Get mouse click coordinates
+	$rootScope.$on("clicked", function(){
+		
+		//run gservice functions associated with coordinates
+		$scope.$apply(function(){
+			$scope.formData.latitude = parseFloat(gservice.clicklat).toFixed(3);
+			$scope.formData.longitude = parseFloat(gservice.clicklong).toFixed(3);
+        	$scope.formData.htmlverified = "Nah but thanks for spamming my map!";
+		});
 
+	});
+
+	//Create a new user based on the form fields
 	$scope.createUser = function(){
 
 		//Get text box info
@@ -48,6 +59,7 @@ addController.controller("addController", function($scope, $http,geolocation, gs
 
 				// refresh the map with dat new data
 				gservice.refresh($scope.formData.latitude,$scope.formData.longitude);
+
 			})
 			.error(function(data){
 				console.log("Error: "+ data);
