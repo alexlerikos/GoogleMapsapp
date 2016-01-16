@@ -15,7 +15,7 @@ var app             = express();
 mongoose.connect("mongodb://localhost/MeanMapApp");
 
 // Logging and Parsing
-app.use(express.static(__dirname + '/public/views'));                 // sets the static files location to public
+app.use(express.static(__dirname + '/public'));                 // sets the static files location to public
 app.use('/bower_components',  express.static(__dirname + '/bower_components')); // Use BowerComponents
 app.use(morgan('dev'));                                         // log with Morgan
 app.use(bodyParser.json());                                     // parse application/json
