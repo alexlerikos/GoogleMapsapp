@@ -32,5 +32,5 @@ UserSchema.pre('save', function(next){
 // Indexes this schema in 2dsphere format (critical for running proximity searches)
 UserSchema.index({location: '2dsphere'});
 
-module.exports = mongoose.model('Maps-users', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
 
