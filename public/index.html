@@ -3,7 +3,7 @@
 <html class="no-js" ng-app="GoogleMapsApp">
 <head>
     <meta charset="utf-8">
-    <title>Scotch MEAN Map</title>
+    <title>GoogleMapsApp</title>
     <meta name="description" content="An example demonstrating Google Map integration with MEAN Apps">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- CSS -->
@@ -45,7 +45,7 @@
             <div class="panel panel-default">
                 <!-- Panel Title -->
                 <div class="panel-heading">
-                    <h2 class="panel-title text-center">Join the Scotch Team! <span class="glyphicon glyphicon-map-marker"></span></h2>
+                    <h2 class="panel-title text-center">Join Team Maps! <span class="glyphicon glyphicon-map-marker"></span></h2>
                 </div>
                 <!-- Panel Body -->
                 <div class="panel-body">
@@ -54,7 +54,7 @@
                         <!-- Text Boxes and Other User Inputs. Note ng-model binds the values to Angular $scope -->
                         <div class="form-group">
                             <label for="username">Username <span class="badge">All fields required</span></label>
-                            <input type="text" class="form-control" id="username" placeholder="OldandGold" ng-model="formData.username" required>
+                            <input type="text" class="form-control" id="username" placeholder="Ron Burgandy" ng-model="formData.username" required>
                         </div>
                         <label class="radio control-label">Gender</label>
                         <div class="radio">
@@ -71,17 +71,17 @@
                         </div>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="optionsRadios" id="radioother" value="What's it to ya?" ng-model="formData.gender">
-                                What's it to ya?
+                                <input type="radio" name="optionsRadios" id="radioother" value="Why all the questions?" ng-model="formData.gender">
+                                Why all the Questions?
                             </label>
                         </div>
                         <div class="form-group">
                             <label for="age">Age</label>
-                            <input type="number" class="form-control" id="age" placeholder="72" ng-model="formData.age" required>
+                            <input type="number" class="form-control" id="age" placeholder="99" ng-model="formData.age" required>
                         </div>
                         <div class="form-group">
                             <label for="language">Favorite Language</label>
-                            <input type="text" class="form-control" id="language" placeholder="Fortran" ng-model="formData.favlang" required>
+                            <input type="text" class="form-control" id="language" placeholder="Javascript" ng-model="formData.favlang" required>
                         </div>
                         <div class="form-group">
                             <label for="latitude">Latitude</label>
@@ -93,7 +93,7 @@
                         </div>
                         <div class="form-group">
                             <label for="verified">HTML5 Verified Location? <span><button class="btn btn-default btn-xs"><span class="glyphicon glyphicon-refresh"></span></button></span></label>
-                            <input type="text" class="form-control" id="verified" placeholder= "Nope (Thanks for spamming my map...)" ng-model="formData.htmlverified" readonly>
+                            <input type="text" class="form-control" id="verified" placeholder= "Too much info!" ng-model="formData.htmlverified" readonly>
                         </div>
                         <!-- Submit button. Note that its tied to createUser() function from addCtrl. Also note ng-disabled logic which prevents early submits.  -->
                         <button type="submit" class="btn btn-danger btn-block" ng-click="createUser()"ng-disabled="addForm.$invalid">Submit</button>
@@ -105,7 +105,7 @@
     <hr/>
     <!-- Footer -->
     <div class="footer">
-        <p class="text-center"><span class="glyphicon glyphicon-check"></span> Created by Alex Lerikos for <a href="hhttps://scotch.io/tutorials/making-mean-apps-with-google-maps-part-i">MEAN App Tutorial</a>
+        <p class="text-center"><span class="glyphicon glyphicon-check"></span> Created by Alex Lerikos with <a href="hhttps://scotch.io/tutorials/making-mean-apps-with-google-maps-part-i">MEAN App Tutorial</a>
         </p>
     </div>
 </div>
